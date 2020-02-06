@@ -6,29 +6,65 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12">
-                    <form>
+                    <form [formGroup]="escuelaForm"
+                    autocomplete="off" 
+                    novalidate="novalidate" 
+                    (ngSubmit)="validarEscuela(escuelaForm.value)">
+                    
                         <div class="form-row">
                           <div class="form-group col-md-2">
-                            <label>Código Escuela</label>
+                            <label>Código</label>
+
                             <input (keyup.f2)="asignarCodigo()"
                                     type="text" 
                                     class="form-control" 
                                     name="codigoEscuela"
+                                    formControlName="codigoEscuela" 
                                     id="codigoEscuela">
                           </div>
                           <div class="form-group col-md-2">
                             <label>Numero</label>
-                            <input type="text" 
-                                    class="form-control" 
-                                    name="numeroEscuela"
-                                    id="numeroEscuela">
+                            <div class="col-12">
+                                <input type="text" 
+                                        class="form-control" 
+                                        name="numeroEscuela"
+                                        formControlName="numeroEscuela" 
+                                        id="numeroEscuela">
+                                <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                            *ngIf="validateControl('numeroEscuela') && hasError('numeroEscuela', 'required')" 
+                                            class="cargando-flotante-input">
+                                </app-alerta>
+                                <app-alerta  [mensajeDeError]="'Máximo 25 caracteres'"
+                                                *ngIf="validateControl('numeroEscuela') && hasError('numeroEscuela', 'maxlength')" 
+                                                class="cargando-flotante-input">
+                                </app-alerta>
+                                <app-alerta [mensajeDeError]="'Mínimo 5 caracteres'"
+                                                    *ngIf="validateControl('numeroEscuela') && hasError('numeroEscuela', 'minlength')" 
+                                                    class="cargando-flotante-input">
+                                    </app-alerta>
+                            </div>
                           </div>
                           <div class="form-group col-md-8">
                             <label>Nombre de la I.E.</label>
-                            <input type="text" 
-                                    class="form-control" 
-                                    name="nombreEscuela"
-                                    id="nombreEscuela">
+                                <div class="col-12">
+                                    <input type="text" 
+                                            class="form-control" 
+                                            name="nombreEscuela"
+                                            formControlName="nombreEscuela" 
+                                            id="nombreEscuela">
+                                    <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                                    *ngIf="validateControl('nombreEscuela') && hasError('nombreEscuela', 'required')" 
+                                                    class="cargando-flotante-input">
+                                    </app-alerta>
+                                    <app-alerta [mensajeDeError]="'Máximo 60 caracteres'"
+                                                    *ngIf="validateControl('nombreEscuela') && hasError('nombreEscuela', 'maxlength')" 
+                                                    class="cargando-flotante-input">
+                                    </app-alerta>
+                                    <app-alerta [mensajeDeError]="'Mínimo 4 caracteres'"
+                                                    *ngIf="validateControl('nombreEscuela') && hasError('nombreEscuela', 'minlength')" 
+                                                    class="cargando-flotante-input">
+                                    </app-alerta>
+                                </div>
                           </div>
                         </div>
                         <div class="row">
@@ -36,10 +72,12 @@
                                 <div class="form-group">
                                     <label>Region</label>
                                     <select class="form-control"
-                                            name="regionEscuela" 
+                                            name="regionEscuela"
+                                            formControlName="regionEscuela"
                                             id="regionEscuela">
-                                <option *ngFor = "let region of regiones"
-                                        [value]="regiones.value">{{regiones.nombre}}</option>
+                                        <option *ngFor="let region of regiones"
+                                                [value]="region.valor">
+                                                {{region.nombre}}</option>
                                     </select>
                                   </div>
                             </div>

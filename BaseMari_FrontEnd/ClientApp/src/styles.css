@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.cargando-flotante-input{
+    /*
+    para que eso funcione se tiene que poner el cargando justo debajo de la etiqueta input,
+    ademas el input debe estar en un contenedor div.col
+    */
+    position: absolute;
+    top: 4px;
+    right: 25px;
+  }

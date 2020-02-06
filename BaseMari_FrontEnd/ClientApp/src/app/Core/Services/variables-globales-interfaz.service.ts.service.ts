@@ -4,9 +4,32 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class VariablesGlobalesInterfaz{
-  public regiones: Array <any> = [{
-    value:'Huancayo', nombre:'Huancayo'
-  }]
+  public regiones: any = [
+    {valor: 'Amazonas', nombre: 'Amazonas'},
+    {valor: 'Áncash', nombre: 'Áncash'},
+    {valor: 'Apurímac', nombre: 'Apurímac'},
+    {valor: 'Arequipa', nombre: 'Arequipa'},
+    {valor: 'Ayacucho', nombre: 'Ayacucho'},
+    {valor: 'Cajamarca', nombre: 'Cajamarca'},
+    {valor: 'Cusco', nombre: 'Cusco'},
+    {valor: 'Huancavelica', nombre: 'Huancavelica'},
+    {valor: 'Huánuco', nombre: 'Huánuco'},
+    {valor: 'Ica', nombre: 'Ica'},
+    {valor: 'Junín', nombre: 'Junín'},
+    {valor: 'La Libertad', nombre: 'La Libertad'},
+    {valor: 'Lambayeque', nombre: 'Lambayeque'},
+    {valor: 'Lima', nombre: 'Lima'},
+    {valor: 'Loreto', nombre: 'Loreto'},
+    {valor: 'Madre de Dios', nombre: 'Madre de Dios'},
+    {valor: 'Moquegua', nombre: 'Moquegua'},
+    {valor: 'Pasco', nombre: 'Pasco'},
+    {valor: 'Piura', nombre: 'Piura'},
+    {valor: 'Puno', nombre: 'Puno'},
+    {valor: 'San Martín', nombre: 'San Martín'},
+    {valor: 'Tacna', nombre: 'Tacna'},
+    {valor: 'Tumbes', nombre: 'Tumbes'},
+    {valor: 'Ucayali', nombre: 'Ucayali'}
+  ]
 
   constructor() { }
 

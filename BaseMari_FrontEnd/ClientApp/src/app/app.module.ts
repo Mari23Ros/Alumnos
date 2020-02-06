@@ -8,17 +8,27 @@ import { PaginaAlumnoComponent } from './Pages/pagina-alumno/pagina-alumno.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CrearEscuelaComponent } from './Components/crear-escuela/crear-escuela.component';
 import { ListarEscuelaComponent } from './Components/listar-escuela/listar-escuela.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InterfazComponent } from './Shared/interfaz/interfaz.component';
+import { AlertaComponent } from './Shared/Interfaz/alerta/alerta.component';
+import { CargandoComponent } from './Shared/Interfaz/cargando/cargando.component';
 
 @NgModule({
   declarations: [
+
     AppComponent,
     CrearAlumnoComponent,
     ListarAlumnoComponent,
     PaginaAlumnoComponent,
     CrearEscuelaComponent,
-    ListarEscuelaComponent
+    ListarEscuelaComponent,
+    InterfazComponent,
+    AlertaComponent,
+    CargandoComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule
   ],

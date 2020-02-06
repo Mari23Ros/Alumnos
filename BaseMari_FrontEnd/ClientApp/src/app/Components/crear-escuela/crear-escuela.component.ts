@@ -10,7 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CrearEscuelaComponent implements OnInit {
 
   public escuelaForm: FormGroup;
-  public regiones: Object[] = [];
+  public regiones: any[] = [];
+  public procesando: boolean;
 
   constructor(private interfaz: VariablesGlobalesInterfaz) {
     this.pasarArrayDeRegionesASelect();
@@ -25,13 +26,47 @@ export class CrearEscuelaComponent implements OnInit {
     });
   }
 
+
   public asignarCodigo(){
     let codigoAux = this.interfaz.generarCodigo();
     this.escuelaForm.get("codigo").setValue(codigoAux);
     // this.paisForm.get("codigo").setValue("miayu");
   }
+
+  public validarEscuela(formEscuelaValue){
+    this.escuelaForm.markAllAsTouched();
+    this.procesando = true;
+    
+    console.log(this.escuelaForm);
+  }
   public pasarArrayDeRegionesASelect(){
     this.regiones = this.interfaz.regiones;
   }
+
+    //#region Validacion de controles
+    public validateControl(controlName: string){
+      if (this.escuelaForm.controls[controlName].invalid && this.escuelaForm.controls[controlName].touched)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+  
+    public hasError(controlName: string, errorName: string) {
+      if (this.escuelaForm.controls[controlName].hasError(errorName))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    //#endregion
+
+
 
 }
