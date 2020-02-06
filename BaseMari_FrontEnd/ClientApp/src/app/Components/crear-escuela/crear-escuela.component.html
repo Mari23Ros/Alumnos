@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            CREACION DE ESCUELA
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-2">
+                            <label>Código Escuela</label>
+                            <input (keyup.f2)="asignarCodigo()"
+                                    type="text" 
+                                    class="form-control" 
+                                    name="codigoEscuela"
+                                    id="codigoEscuela">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label>Numero</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    name="numeroEscuela"
+                                    id="numeroEscuela">
+                          </div>
+                          <div class="form-group col-md-8">
+                            <label>Nombre de la I.E.</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    name="nombreEscuela"
+                                    id="nombreEscuela">
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Region</label>
+                                    <select class="form-control"
+                                            name="regionEscuela" 
+                                            id="regionEscuela">
+                                <option *ngFor = "let region of regiones"
+                                        [value]="regiones.value">{{regiones.nombre}}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                      </form>
+                </div>
+          
+              </div>
+        </div>
+    </div>
+    
+  </div>
