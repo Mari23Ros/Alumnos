@@ -9,9 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CrearEscuelaComponent } from './Components/crear-escuela/crear-escuela.component';
 import { ListarEscuelaComponent } from './Components/listar-escuela/listar-escuela.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InterfazComponent } from './Shared/interfaz/interfaz.component';
-import { AlertaComponent } from './Shared/Interfaz/alerta/alerta.component';
-import { CargandoComponent } from './Shared/Interfaz/cargando/cargando.component';
+import { SharedModule } from './Shared/shared.module';
+import { PaginaPrincipalComponent } from './Pages/pagina-principal/pagina-principal.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
+import { InternalServerComponent } from './Pages/internal-server/internal-server.component';
+import { APP_ROUTING } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,17 @@ import { CargandoComponent } from './Shared/Interfaz/cargando/cargando.component
     PaginaAlumnoComponent,
     CrearEscuelaComponent,
     ListarEscuelaComponent,
-    InterfazComponent,
-    AlertaComponent,
-    CargandoComponent
+    PaginaPrincipalComponent,
+    NotFoundComponent,
+    InternalServerComponent,
   ],
   imports: [
+    APP_ROUTING,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

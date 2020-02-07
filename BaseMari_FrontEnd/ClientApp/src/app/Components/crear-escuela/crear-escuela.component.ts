@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VariablesGlobalesInterfaz } from 'src/app/Core/Services/variables-globales-interfaz.service.ts.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ModoFormulario } from 'src/app/Interfaces/Clases/modoFormulario.model';
+import { Escuela } from 'src/app/Interfaces/Modelos/escuela.model';
 
 @Component({
   selector: 'app-crear-escuela',
@@ -12,6 +14,8 @@ export class CrearEscuelaComponent implements OnInit {
   public escuelaForm: FormGroup;
   public regiones: any[] = [];
   public procesando: boolean;
+  public buscandoEscuela: boolean;
+  public modoFormulario: ModoFormulario = new ModoFormulario();
 
   constructor(private interfaz: VariablesGlobalesInterfaz) {
     this.pasarArrayDeRegionesASelect();
@@ -24,19 +28,43 @@ export class CrearEscuelaComponent implements OnInit {
       nombreEscuela : new FormControl('',[Validators.required, Validators.maxLength(60), Validators.minLength(4)]),
       regionEscuela : new FormControl('',[]),
     });
+    console.log(this.escuelaForm);
+
+    if(this.modoFormulario.crear)
+    {
+      this.asignarCodigo()
+    }
+    else if(this.modoFormulario.modificar){
+      // Aqui pondre algun metodo que llegue de otro formulario
+    }
+    else{
+    // Aqui pondre algun metodo que llegue de otro formulario
+    }
   }
 
 
   public asignarCodigo(){
     let codigoAux = this.interfaz.generarCodigo();
-    this.escuelaForm.get("codigo").setValue(codigoAux);
+    console.log(codigoAux);
+    this.escuelaForm.get("codigoEscuela").setValue(codigoAux);
     // this.paisForm.get("codigo").setValue("miayu");
+    //return codigoAux;
   }
+
+
 
   public validarEscuela(formEscuelaValue){
     this.escuelaForm.markAllAsTouched();
     this.procesando = true;
-    
+
+    if(this.escuelaForm.valid){
+      if(this.modoFormulario.crear){
+        
+
+      }
+
+    }
+
     console.log(this.escuelaForm);
   }
   public pasarArrayDeRegionesASelect(){
@@ -67,6 +95,25 @@ export class CrearEscuelaComponent implements OnInit {
     }
     //#endregion
 
+    public getEscuela(codigo: string ){
+      if(codigo != null && codigo !=""){
+        this.buscandoEscuela = true;
+        let apiAdess: string = `api/escuela/${codigo}`;
+
+      }        
+      }
+    //   private guardarEscuela(escuelaFormValue){
+    //     let escuelaAGuardar: Escuela = this. 
+
+
+    // }
+
+    // public pasarFormularioAEntidad(escuelaForm){
+    //   let escuelaADevolver: Escuela ={
+    //     idescuela: this.escuelaForm.controls.codigo.value,
+    //   }
+
+    // }
 
 
 }

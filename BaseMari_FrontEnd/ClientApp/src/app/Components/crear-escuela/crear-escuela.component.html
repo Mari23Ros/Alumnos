@@ -21,6 +21,12 @@
                                     name="codigoEscuela"
                                     formControlName="codigoEscuela" 
                                     id="codigoEscuela">
+                            <app-cargando *ngIf = "buscandoEscuela"
+                                            class="cargando-flotante-inpu"
+                                            [escala]= "'x1'"
+                                            [mostrarTexto]=false>
+
+                            </app-cargando>
                           </div>
                           <div class="form-group col-md-2">
                             <label>Numero</label>
