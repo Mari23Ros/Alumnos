@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { VariablesGlobalesInterfaz } from 'src/app/Core/Services/variables-globales-interfaz.service.ts.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModoFormulario } from 'src/app/Interfaces/Clases/modoFormulario.model';
-import { Escuela } from 'src/app/Interfaces/Modelos/escuela.model';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-crear-escuela',
@@ -11,14 +11,16 @@ import { Escuela } from 'src/app/Interfaces/Modelos/escuela.model';
 })
 export class CrearEscuelaComponent implements OnInit {
 
+  @Input() codigo: string = 'nuevo';
   public escuelaForm: FormGroup;
   public regiones: any[] = [];
   public procesando: boolean;
-  public buscandoEscuela: boolean;
   public modoFormulario: ModoFormulario = new ModoFormulario();
+  public btnAceptar: boolean = false;
+
 
   constructor(private interfaz: VariablesGlobalesInterfaz) {
-    this.pasarArrayDeRegionesASelect();
+              this.pasarArrayDeRegionesASelect();
    }
 
   ngOnInit() {
@@ -28,18 +30,33 @@ export class CrearEscuelaComponent implements OnInit {
       nombreEscuela : new FormControl('',[Validators.required, Validators.maxLength(60), Validators.minLength(4)]),
       regionEscuela : new FormControl('',[]),
     });
+    
     console.log(this.escuelaForm);
 
-    if(this.modoFormulario.crear)
-    {
+    // Condicional para poder asignar el codigo de escuela; si es nuevo debe asignar si no lo es no debe asignar modificar
+    if (this.codigo == 'nuevo') {
+      console.log("Llego a nuevo");
+      this.modoFormulario.modoCrear();
       this.asignarCodigo()
-    }
-    else if(this.modoFormulario.modificar){
-      // Aqui pondre algun metodo que llegue de otro formulario
+
     }
     else{
-    // Aqui pondre algun metodo que llegue de otro formulario
+      this.modoFormulario.modoEditar();
+      console.log("Llefo a modificar");
     }
+
+    
+    // if(this.modoFormulario.crear)
+    // {
+    //   this.asignarCodigo()
+    // }
+    // else if(this.modoFormulario.modificar){
+    //   // Aqui pondre algun metodo que llegue de otro formulario
+    // }
+    // else{
+    // // Aqui pondre algun metodo que llegue de otro formulario
+    // }
+
   }
 
 
@@ -53,7 +70,7 @@ export class CrearEscuelaComponent implements OnInit {
 
 
 
-  public validarEscuela(formEscuelaValue){
+  public guardarEscuela(formEscuelaValue){
     this.escuelaForm.markAllAsTouched();
     this.procesando = true;
 
@@ -94,14 +111,6 @@ export class CrearEscuelaComponent implements OnInit {
       }
     }
     //#endregion
-
-    public getEscuela(codigo: string ){
-      if(codigo != null && codigo !=""){
-        this.buscandoEscuela = true;
-        let apiAdess: string = `api/escuela/${codigo}`;
-
-      }        
-      }
     //   private guardarEscuela(escuelaFormValue){
     //     let escuelaAGuardar: Escuela = this. 
 
@@ -114,6 +123,7 @@ export class CrearEscuelaComponent implements OnInit {
     //   }
 
     // }
+
 
 
 }

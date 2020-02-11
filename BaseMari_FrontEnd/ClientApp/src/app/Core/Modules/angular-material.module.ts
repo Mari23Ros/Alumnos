@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material';
 
 
-const MaterialComponents = [ 
+const MaterialComponents = [
   MatDialogModule
  ]
 

@@ -7,25 +7,32 @@ import { AlertaComponent } from './Interfaz/alerta/alerta.component';
 import { MessageModalComponent } from './Modales/message-modal/message-modal.component';
 import { DecisionModalComponent } from './Modales/decision-modal/decision-modal.component';
 
+const componentesShare = [
+  CargandoComponent,
+  AlertaComponent,
+  MessageModalComponent,
+  DecisionModalComponent,
+]
 
 @NgModule({
   imports: [
     CommonModule,
-    // RouterModule.forChild([
-    //   // { path: 'pais', component: PaisComponent }
-    // ])
-
   ],
   declarations: [
-    CargandoComponent,
-    AlertaComponent,
-    MessageModalComponent,
-    DecisionModalComponent,
+    componentesShare
   ],
 
   exports: [
-    CargandoComponent,
-    AlertaComponent
+    
+    //FORMA CORTA CON VARIABLE
+
+    componentesShare
+    //FORMA LARGA DE EXPORTAR
+
+    // CargandoComponent,
+    // AlertaComponent,
+    // MessageModalComponent,
+    // DecisionModalComponent
   ],
 
   entryComponents: [

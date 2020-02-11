@@ -9,11 +9,11 @@
                     <form [formGroup]="escuelaForm"
                     autocomplete="off" 
                     novalidate="novalidate" 
-                    (ngSubmit)="validarEscuela(escuelaForm.value)">
+                    (ngSubmit)="guardarEscuela(escuelaForm.value)">
                     
                         <div class="form-row">
                           <div class="form-group col-md-2">
-                            <label>Código</label>
+                            <!-- <label>Código</label> -->
 
                             <input (keyup.f2)="asignarCodigo()"
                                     type="text" 
@@ -21,8 +21,8 @@
                                     name="codigoEscuela"
                                     formControlName="codigoEscuela" 
                                     id="codigoEscuela">
-                            <app-cargando *ngIf = "buscandoEscuela"
-                                            class="cargando-flotante-inpu"
+                            <app-cargando *ngIf = "procesando"
+                                            class="cargando-flotante-inpuFt"
                                             [escala]= "'x1'"
                                             [mostrarTexto]=false>
 
