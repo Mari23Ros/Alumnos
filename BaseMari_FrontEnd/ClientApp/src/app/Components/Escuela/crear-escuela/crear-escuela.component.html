@@ -1,7 +1,18 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            CREACION DE ESCUELA
+          <div class="row">
+            <div class="col">
+              CREACION DE ESCUELA
+            </div>
+            <div class="text-right col">
+                <app-cargando *ngIf = "procesando"
+                              class="cargando-flotante-inpuFt"
+                              [escala]= "'x1'"
+                              [mostrarTexto]=false>
+                </app-cargando>
+            </div>
+          </div>
         </div>
         <div class="card-body">
             <div class="row">
@@ -9,24 +20,27 @@
                     <form [formGroup]="escuelaForm"
                     autocomplete="off" 
                     novalidate="novalidate" 
-                    (ngSubmit)="guardarEscuela(escuelaForm.value)">
+                    (ngSubmit)="validatYGuardarEscuela(escuelaForm.value)">
                     
                         <div class="form-row">
                           <div class="form-group col-md-2">
-                            <!-- <label>Código</label> -->
+                            <label>Código</label>
 
                             <input (keyup.f2)="asignarCodigo()"
+                                    (blur)="getEscuela(escuelaForm.controls.codigoEscuela.value)" 
                                     type="text" 
                                     class="form-control" 
                                     name="codigoEscuela"
                                     formControlName="codigoEscuela" 
                                     id="codigoEscuela">
-                            <app-cargando *ngIf = "procesando"
+                            <!--El (blur) lo uso para poder obtener la escuela una vez el foco cambie fuera del input de codigo -->
+                            <!-- <app-cargando *ngIf = "procesando"
                                             class="cargando-flotante-inpuFt"
                                             [escala]= "'x1'"
                                             [mostrarTexto]=false>
 
-                            </app-cargando>
+                            </app-cargando> -->
+                          
                           </div>
                           <div class="form-group col-md-2">
                             <label>Numero</label>
@@ -47,7 +61,7 @@
                                 <app-alerta [mensajeDeError]="'Mínimo 5 caracteres'"
                                                     *ngIf="validateControl('numeroEscuela') && hasError('numeroEscuela', 'minlength')" 
                                                     class="cargando-flotante-input">
-                                    </app-alerta>
+                                </app-alerta>
                             </div>
                           </div>
                           <div class="form-group col-md-8">
@@ -85,11 +99,11 @@
                                                 [value]="region.valor">
                                                 {{region.nombre}}</option>
                                     </select>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                        
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary" >Guardar</button>
                       </form>
                 </div>
           
@@ -98,3 +112,4 @@
     </div>
     
   </div>
+<app-listar-escuela (escuelaParaFormulario)="pasarTablaAformulario ($event)"></app-listar-escuela>

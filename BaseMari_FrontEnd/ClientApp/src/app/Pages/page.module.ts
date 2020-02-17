@@ -9,6 +9,7 @@ import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.co
 import { EscuelaModule } from '../Components/Escuela/escuela.module';
 import { AlumnoModule } from '../Components/Alumno/alumno.module';
 import { SharedModule } from '../Shared/shared.module';
+import { APP_ROUTING } from '../app.routes';
 
 
 
@@ -23,6 +24,7 @@ import { SharedModule } from '../Shared/shared.module';
 
     ],
     imports: [
+        APP_ROUTING,
         CommonModule,
         EscuelaModule,
         AlumnoModule,
@@ -33,7 +35,8 @@ import { SharedModule } from '../Shared/shared.module';
         PaginaEscuelaComponent,
         InternalServerComponent,
         NotFoundComponent,
-        PaginaPrincipalComponent
+        PaginaPrincipalComponent,
+        NavbarComponent
     ],
     entryComponents: [
         // USAR PARA JALAR MODALES

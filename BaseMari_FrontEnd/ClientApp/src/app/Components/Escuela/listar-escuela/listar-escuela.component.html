@@ -1,1 +1,38 @@
-<p>listar-escuela works!</p>
+<button (click)="cargarEscuelas()" class="btn btn-primary mt-5" >Actualizar</button>
+<div class="row mt-5">
+    <div class="col-12">
+        <table  style="width: 100%;" class="table table-striped table-bordered table-sm table-responsive" cellspacing="0">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">-</th>
+                    <!-- <th scope="col">-</th> -->
+                    <th scope="col"> codigo </th>
+                    <th scope="col"> numero </th>
+                    <th scope="col"> nombre </th>
+                    <th scope="col"> region </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let usuario of listaUsuarios" (click)="cargarAFormulario(usuario)" (dblclick)="aceptar(usuario)" class="animated fadeIn"> -->
+                <tr *ngFor="let escuela of listaEscuelas" class="animated fadeIn" (click)= "pasarModeloEscuela(escuela)">
+
+                    <td class="text-center">
+                        <button (click)="decisionBorrarEscuela(escuela.idescuela)" type="button" class="btn btn-light text-danger botones"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </td>
+                    <!-- <td class="text-center"> -->
+                        <!-- <button (click)="cargarAFormulario(usuario)" type="button" class="btn btn-ligth text-primary botones"><i class="fa fa-pencil" aria-hidden="true"></i></button> -->
+                    <!-- </td> -->
+                    <td> {{ escuela.idescuela }} </td>
+                    <td> {{ escuela.numero }} </td>
+                    <td> {{ escuela.nombre }} </td>
+                    <td> {{ escuela.region}} </td>
+            </tbody>
+        </table>
+    </div>
+    <div    *ngIf="!listaEscuelas"
+            class="col-12 text-center">        
+        <app-cargando   [escala]="'x2'"
+                        [mostrarTexto]=true>
+        </app-cargando>
+    </div>
+</div>

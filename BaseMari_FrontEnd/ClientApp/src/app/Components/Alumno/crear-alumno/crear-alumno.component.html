@@ -1,62 +1,164 @@
 <div class="container">
-    <div class="card">
-        <div class="card-header">
-            FICHA DE ALUMNO
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-12 col-md-4 text-center">
-                  <img src="assets/img/student.png" alt="" class="img-student img-thumbnail">
-                </div>
-                <div class="col-12 col-md-8">
-                    <form>
-                        <div class="form-row">
-                          <div class="form-group col-md-4">
-                            <label>Código</label>
-                            <input type="text" 
+  <div class="card">
+      <div class="card-header">
+          FICHA DE ALUMNO
+      </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-12 col-md-4 text-center">
+                <img src="assets/img/student.png" alt="" class="img-student img-thumbnail">
+              </div>
+              <div class="col-12 col-md-8">
+                  <form [formGroup]="alumnoForm"
+                        autocomplete="off" 
+                        novalidate="novalidate" 
+                        (ngSubmit)="validarYGuardarAlumno(alumnoForm.value)">
+
+                      <div class="form-row">
+                        <div class="form-group col-md-4">
+                          <label>Código</label>
+                          <div class="col-12">
+                            <input type="text"
+                                    (blur)="getAlumno(alumnoForm.controls.codigoAlumno.value)" 
                                     class="form-control" 
                                     name="codigoAlumno"
+                                    maxlength="15"
+                                    formControlName="codigoAlumno"
                                     id="codigoAlumno">
+                            <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                    *ngIf="validateControl('codigoAlumno') && hasError('codigoAlumno', 'required')" 
+                                    class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta  [mensajeDeError]="'Máximo 15 caracteres'"
+                                          *ngIf="validateControl('codigoAlumno') && hasError('codigoAlumno', 'maxlength')" 
+                                          class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta [mensajeDeError]="'Mínimo 10 caracteres'"
+                                        *ngIf="validateControl('codigoAlumno') && hasError('codigoAlumno', 'minlength')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
                           </div>
-                          <div class="form-group col-md-8">
+                        </div>
+                        <div class="form-group col-md-8">
                             <label>Apellidos y Nombres</label>
+                            <div class="col-12">
                             <input type="text" 
                                     class="form-control"
                                     name="nombreAlumno" 
+                                    formControlName = "nombreAlumno"
                                     id="nombreAlumno">
+                            <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                    *ngIf="validateControl('nombreAlumno') && hasError('nombreAlumno', 'required')" 
+                                    class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta  [mensajeDeError]="'Máximo 50 caracteres'"
+                                          *ngIf="validateControl('nombreAlumno') && hasError('nombreAlumno', 'maxlength')" 
+                                          class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta [mensajeDeError]="'Mínimo 4 caracteres'"
+                                        *ngIf="validateControl('nombreAlumno') && hasError('nombreAlumno', 'minlength')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>Edad</label>
+                            <div class="col-12">
+                            <input type="text" 
+                                  class="form-control"
+                                  name="edadAlumno"
+                                  formControlName="edadAlumno"
+                                  id="edadAlumno">
+                        
+                            <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                        *ngIf="validateControl('edadAlumno') && hasError('edadAlumno', 'required')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta [mensajeDeError]="'Maximo 3 caracteres'"
+                                        *ngIf="validateControl('edadAlumno') && hasError('edadAlumno', 'maxlength')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta [mensajeDeError]="'Mínimo 1 caracteres'"
+                                        *ngIf="validateControl('edadAlumno') && hasError('edadAlumno', 'minlength')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <label>Dirección</label>
-                          <input type="text" 
-                                class="form-control"
-                                name="direccionAlumno" 
-                                id="direccionAlumno">
+                        <div class="form-group col-md-9">
+                            <label>Dirección</label>
+                            <div class="col-12">
+                            <input type="text" 
+                                  class="form-control"
+                                  name="direccionAlumno"
+                                  formControlName="direccionAlumno"
+                                  id="direccionAlumno">
+                            <app-alerta [mensajeDeError]="'Maximo 50 caracteres'"
+                                        *ngIf="validateControl('direccionAlumno') && hasError('direccionAlumno', 'maxlength')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
+                            <app-alerta [mensajeDeError]="'Mínimo 4 caracteres'"
+                                        *ngIf="validateControl('direccionAlumno') && hasError('direccionAlumno', 'minlength')" 
+                                        class="cargando-flotante-input">
+                            </app-alerta>
+                          </div>
                         </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-4">
-                            <label >Sexo</label>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-group col-md-4">
+                          <label >Sexo</label>
+                          <div class="col-12">
                             <select class="form-control"
                                     name="sexoAlumno"
+                                    formControlName="sexoAlumno"
                                     id="sexoAlumno">
                                 <option selected>Femenino</option>
                                 <option>Masculino</option>
+                                <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                        *ngIf="validateControl('sexoAlumno') && hasError('sexoAlumno', 'required')" 
+                                        class="cargando-flotante-input">
+                                </app-alerta>
                             </select>
                           </div>
-                          <div class="form-group col-md-8">
-                            <label>Escuela</label>
-                            <input type="text" 
-                                    class="form-control" 
-                                    id="">
-                          </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                      </form>
-                </div>
-          
+                        <div class="form-group col-md-8">
+                          <label>Escuela</label>
+                          <div class="col-12">
+                            <select class="form-control" 
+                                    name="codigoEscuelaAlumno"
+                                    formControlName="codigoEscuelaAlumno" 
+                                    id="codigoEscuelaAlumno">
+                                      <option *ngFor="let escuela of listaEscuelas"
+                                              [value]="escuela.idescuela">
+                                        {{ escuela.nombre}}
+                                      </option>
+                              <app-alerta [mensajeDeError]="'Campo obligatorio'"
+                                          *ngIf="validateControl('codigoEscuelaAlumno') && hasError('codigoEscuelaAlumno', 'required')" 
+                                          class="cargando-flotante-input">
+                              </app-alerta>
+                            </select>
+                          </div>
+                          <!-- <select class="form-control"
+                                          name="escuelaAlumno"
+                                          formControlName="escuelaAlumno"
+                                          id="escuelaAlumno">
+                                      <option *ngFor="let escuela of listaEscuelas"
+                                              [value]="escuela.idescuela">
+                                              {{escuela.nombre}}
+                                      </option>
+                          </select> -->
+                          
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
               </div>
-        </div>
-    </div>
-    
+            </div>
+      </div>
   </div>
+</div>
+<app-listar-alumno (alumnoParaFormulario)="pasarTablaAformulario ($event)"></app-listar-alumno>

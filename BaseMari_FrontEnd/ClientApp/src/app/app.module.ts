@@ -15,25 +15,21 @@ import { PaginaEscuelaComponent } from './Pages/pagina-escuela/pagina-escuela.co
 import { AlumnoModule } from './Components/Alumno/alumno.module';
 import { EscuelaModule } from './Components/Escuela/escuela.module';
 import { PageModule } from './Pages/page.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
 
     AppComponent,
-    PaginaAlumnoComponent,
-    PaginaPrincipalComponent,
-    NotFoundComponent,
-    InternalServerComponent,
-    NavbarComponent,
-    PaginaEscuelaComponent,
   ],
   imports: [
-    APP_ROUTING,
+    // APP_ROUTING,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    PageModule
+    PageModule,
+    HttpClientModule
 
   ],
   providers: [],

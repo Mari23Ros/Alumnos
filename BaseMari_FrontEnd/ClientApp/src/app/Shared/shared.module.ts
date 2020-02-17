@@ -23,11 +23,11 @@ const componentesShare = [
   ],
 
   exports: [
-    
-    //FORMA CORTA CON VARIABLE
+
+    // FORMA CORTA DE EXPORTAR, HACIENDO USO DE UNA VARIABLE
 
     componentesShare
-    //FORMA LARGA DE EXPORTAR
+    // FORMA LARGA DE EXPORTAR
 
     // CargandoComponent,
     // AlertaComponent,

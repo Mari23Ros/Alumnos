@@ -1,1 +1,39 @@
-<p>listar-alumno works!</p>
+<button (click)="cargarAlumnos()" class="btn btn-primary mt-5" >Actualizar</button>
+<div class="row mt-5">
+    <div class="col-12">
+        <table  style="width: 100%;" class="table table-striped table-bordered table-sm table-responsive" cellspacing="0">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">-</th>
+                    <th scope="col"> codigo </th>
+                    <th scope="col"> nombre </th>
+                    <th scope="col"> edad </th>
+                    <th scope="col"> direccion </th>
+                    <th scope="col"> sexo </th>
+                    <th scope="col"> escuela </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let usuario of listaUsuarios" (click)="cargarAFormulario(usuario)" (dblclick)="aceptar(usuario)" class="animated fadeIn"> -->
+                <!-- <tr *ngFor="let alumno of listaAlumnos" class="animated fadeIn" (click)= "pasarModeloEscuela(escuela)"> -->
+                <tr *ngFor="let alumno of listaAlumnos" class="animated fadeIn" (click)="cargarAFormulario(alumno)">
+
+                    <td class="text-center">
+                        <button (click)="decisionBorrarAlumno(alumno.codigoAlumno)" type="button" class="btn btn-light text-danger botones"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </td>
+                    <td> {{ alumno.codigoAlumno }} </td>
+                    <td> {{ alumno.nombreAlumno }} </td>
+                    <td> {{ alumno.edadAlumno }} </td>
+                    <td> {{ alumno.direccionAlumno}} </td>
+                    <td> {{ alumno.sexoAlumno }} </td>
+                    <td> {{ alumno.nombreEscuela}} </td>
+            </tbody>
+        </table>
+    </div>
+    <div    *ngIf="!listaAlumnos"
+            class="col-12 text-center">        
+        <app-cargando   [escala]="'x2'"
+                        [mostrarTexto]=true>
+        </app-cargando>
+    </div>
+</div>

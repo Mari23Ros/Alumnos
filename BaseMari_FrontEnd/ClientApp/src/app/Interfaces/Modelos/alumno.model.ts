@@ -6,5 +6,7 @@ export class Alumno {
     edad: number;
     direccion: string;
     sexo: string;
-    escuela: Escuela;
+    
+    escuela?: Escuela;
+    
 }
